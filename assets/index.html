@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>WebSocket test</title>
+</head>
+<body>
+<input id="msg" type="text" placeholder="Write message here">
+<p>Press enter to send a message to server.</p>
+
+<script>
+    const input = document.getElementById('msg');
+    const socket = new WebSocket('ws://localhost:1234/echo?chatId=1');
+    socket.onmessage = (msg) => { console.log('Got message', msg); };
+
+    input.addEventListener('keydown', function(event) {
+        if (event.keyCode === 13) {
+            console.log(input.value);
+            socket.send(input.value);
+        }
+    });
+</script>
+</body>
+</html>
