@@ -1,24 +1,25 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <title>WebSocket test</title>
-</head>
-<body>
-<input id="msg" type="text" placeholder="Write message here">
-<p>Press enter to send a message to server.</p>
+<html lang="en-CA">
+  <head>
+    <meta charset="UTF-8" />
+    <title>nhooyr.io/websocket - Chat Example</title>
+    <meta name="viewport" content="width=device-width" />
 
-<script>
-    const input = document.getElementById('msg');
-    const socket = new WebSocket('ws://localhost:1234/echo?chatId=1');
-    socket.onmessage = (msg) => { console.log('Got message', msg); };
-
-    input.addEventListener('keydown', function(event) {
-        if (event.keyCode === 13) {
-            console.log(input.value);
-            socket.send(input.value);
-        }
-    });
-</script>
-</body>
+    <link href="https://unpkg.com/sanitize.css" rel="stylesheet" />
+    <link href="https://unpkg.com/sanitize.css/typography.css" rel="stylesheet" />
+    <link href="https://unpkg.com/sanitize.css/forms.css" rel="stylesheet" />
+    <link href="/index.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div id="root">
+      <div id="message-log"></div>
+      <div id="publish-form-container">
+        <form id="publish-form">
+          <input name="message" id="message-input" type="text" />
+          <input value="Submit" type="submit" />
+        </form>
+      </div>
+    </div>
+    <script type="text/javascript" src="/index.js"></script>
+  </body>
 </html>
